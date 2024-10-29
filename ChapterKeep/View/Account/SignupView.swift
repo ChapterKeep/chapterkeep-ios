@@ -42,7 +42,7 @@ struct SignupView: View {
             .padding([.horizontal, .bottom], 20)
         }
         .edgesIgnoringSafeArea(.top)
-
+        .navigationBarBackButtonHidden(true)
     }
                        
     func signup() {
