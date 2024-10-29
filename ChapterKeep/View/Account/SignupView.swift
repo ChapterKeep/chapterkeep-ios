@@ -9,29 +9,45 @@ import Foundation
 import SwiftUI
 
 struct SignupView: View {
-    
-    @State private var page = 1
-    @State private var isButtonEnabled = false
-    @ObservedObject private var model = SignupModel()
+    @StateObject private var model = SignupModel()
     
     var body: some View {
         VStack {
             SignupHeader()
-            Spacer()
-            VStack {
-                Button(action: { }) {
-                    Text(page == 1 ? "다음으로" : "가입하기")
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(isButtonEnabled ? .accent : .gray.opacity(0.4))
-                        .cornerRadius(8)
+                .padding(.bottom)
+            VStack(alignment: .leading) {
+                if model.page == 1 {
+                    SignupAccountView()
+                        .environmentObject(model)
+                        .scrollOnOverflow()
+                } else {
+                    ProfileEditView()
+                        .environmentObject(model.profileModel)
+                        .scrollOnOverflow()
                 }
-                .disabled(!isButtonEnabled)
             }
-            .padding(20)
-
+            Spacer()
+            Button(action: {
+                if model.page < 2 { withAnimation { model.page += 1 } }
+                else { signup() }
+            }) {
+                Text(model.page == 1 ? "다음으로" : "가입하기")
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(model.isButtonEnabled ? .accent : .gray.opacity(0.4))
+                    .cornerRadius(8)
+            }
+            .disabled(!model.isButtonEnabled)
+            .padding([.horizontal, .bottom], 20)
         }
+        .edgesIgnoringSafeArea(.top)
+
+    }
+                       
+    func signup() {
+        // TODO: 회원가입 구현
+        model.page -= 1
     }
 }
 
@@ -58,7 +74,6 @@ struct SignupHeader: View {
         .frame(height: 160)
         .background(.accent)
         .padding(.bottom, 7)
-        .edgesIgnoringSafeArea(.top)
     }
 }
 

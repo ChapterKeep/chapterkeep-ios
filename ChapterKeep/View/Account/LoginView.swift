@@ -26,9 +26,9 @@ import SwiftUI
                 .font(.subheadline)
                 .padding(.bottom)
             VStack(alignment: .leading) {
-                CKTextFeild("아이디", text: $username)
+                CKTextFeild("아이디", text: $username, maxLength: 10)
                     .padding(.bottom, 6)
-                CKTextFeild("비밀번호", text: $password, type: .secure)
+                CKTextFeild("비밀번호", text: $password, type: .secure, maxLength: 16)
             }
             .padding()
             Button {
