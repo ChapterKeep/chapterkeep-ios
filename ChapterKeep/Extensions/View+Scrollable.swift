@@ -17,7 +17,6 @@ struct OverflowContentViewModifier: ViewModifier {
                 GeometryReader { contentGeometry in
                     Color.clear.onAppear {
                         contentOverflow = contentGeometry.size.height > geometry.size.height
-                        print("\(contentOverflow) = \(contentGeometry.size.height) > \(geometry.size.height)")
                     }
                 }
             )
