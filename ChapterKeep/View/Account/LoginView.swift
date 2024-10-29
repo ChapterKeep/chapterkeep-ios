@@ -30,9 +30,10 @@ import SwiftUI
                     .padding(.bottom, 6)
                 CKTextFeild("비밀번호", text: $password, type: .secure, maxLength: 16)
             }
+            .frame(width: 300)
             .padding()
             Button {
-               // Do login
+                state = .main
             } label: {
                 Text("로그인")
                     .font(.headline)

@@ -12,6 +12,7 @@ import SwiftUI
 @MainActor struct CKButton<Label: View>: View {
 
     let action: @MainActor () -> Void
+    var color = Color.accent
     @ViewBuilder let label: () -> Label
     
     var body: some View {
@@ -19,7 +20,7 @@ import SwiftUI
             label()
         }
         .foregroundStyle(.white)
-        .background(.accent)
+        .background(color)
         .cornerRadius(8)
     }
 

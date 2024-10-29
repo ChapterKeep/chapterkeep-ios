@@ -8,13 +8,7 @@
 import SwiftUI
 
 struct ProfileEditView: View {
-    
-    enum NicknameAvailablity {
-        case none, available, unavailable
-    }
-    
     @EnvironmentObject var model: ProfileModel
-    @State var nicknameAvailability: NicknameAvailablity = .none
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -46,11 +40,11 @@ struct ProfileEditView: View {
             CKTextFeild("닉네임 (10자 제한)", text: $model.nickname, maxLength: 10)
                 .padding(.bottom, 6)
             HStack {
-                if nicknameAvailability == .available {
+                if model.nicknameAvailability == .available {
                     Text("사용 가능한 닉네임입니다.")
                         .font(.system(size: 13))
                         .foregroundColor(.gray)
-                } else if nicknameAvailability == .unavailable {
+                } else if model.nicknameAvailability == .unavailable {
                     Text("사용할 수 없는 닉네임입니다.")
                         .font(.system(size: 13))
                         .foregroundColor(.gray)
@@ -87,10 +81,10 @@ struct ProfileEditView: View {
     
     func checkDuplicateNickname() {
         // TODO: 닉네임 중복 확인 구현
-        if nicknameAvailability == .available {
-            nicknameAvailability = .unavailable
+        if model.nicknameAvailability == .available {
+            model.nicknameAvailability = .unavailable
         } else {
-            nicknameAvailability = .available
+            model.nicknameAvailability = .available
         }
     }
 }

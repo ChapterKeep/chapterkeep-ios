@@ -15,7 +15,8 @@ enum AppState {
 struct ChapterKeepApp: App {
     @AppStorage("isLoggedIn") var isLoggedIn = false
     @State var state: AppState = .loading
-
+    @StateObject var model = ProfileModel()
+    
     var body: some Scene {
         WindowGroup {
             if state == .loading {
@@ -35,6 +36,8 @@ struct ChapterKeepApp: App {
             } else {
                 NavigationView {
                     MainView(state: $state)
+                        .environmentObject(model)
+
                 }
             }
         }
