@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 
 @MainActor struct LoginView: View {
+    @Binding var state: AppState
     @State var username = ""
     @State var password = ""
-
+    
     var body: some View {
         VStack() {
             Spacer()
@@ -25,28 +26,9 @@ import SwiftUI
                 .font(.subheadline)
                 .padding(.bottom)
             VStack(alignment: .leading) {
-                TextField("아이디", text: $username)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                    .padding(.horizontal)
-                    .frame(width: 300, height: 50)
-                    .textFieldStyle(.plain)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(.gray.opacity(0.4), lineWidth: 1)
-                    )
+                CKTextFeild("아이디", text: $username)
                     .padding(.bottom, 6)
-                SecureField("비밀번호", text: $password)
-                    .padding(.horizontal)
-                    .frame(width: 300, height: 50)
-                    .textFieldStyle(.plain)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(.gray.opacity(0.4), lineWidth: 1)
-                    )
-
+                CKTextFeild("비밀번호", text: $password, type: .secure)
             }
             .padding()
             Button {
@@ -60,16 +42,18 @@ import SwiftUI
                     .background(Color(red:241/255, green:241/255, blue:241/255))
                     .cornerRadius(12)
             }
-//            .disabled(true)
-//            .opacity(adminVM.isInputValid() ? 1.0 : 0.5)
 
 
             Spacer()
-            Text("회원가입")
+            NavigationLink(destination: SignupView()) {
+                Text("회원가입")
+            }
         }
     }
 }
 
+@available(iOS 17.0, *)
 #Preview("LoginView Preview") {
-    LoginView()
+    @Previewable @State var state = AppState.login
+    LoginView(state: $state)
 }

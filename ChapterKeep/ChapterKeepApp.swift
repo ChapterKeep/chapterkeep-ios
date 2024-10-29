@@ -8,22 +8,34 @@
 import SwiftUI
 
 enum AppState {
-    case loading, done
+    case loading, login, main
 }
 
 @main
 struct ChapterKeepApp: App {
-    @State var loadingState: AppState = .loading
+    @AppStorage("isLoggedIn") var isLoggedIn = false
+    @State var state: AppState = .loading
+
     var body: some Scene {
         WindowGroup {
-            if loadingState == .loading {
+            if state == .loading {
                 LaunchScreen()
                     .task {
                         try? await Task.sleep(for: .seconds(2))
-                        loadingState = .done
+                        if isLoggedIn {
+                            state = .main
+                        } else {
+                            state = .login
+                        }
                     }
+            } else if state == .login {
+                NavigationView {
+                    LoginView(state: $state)
+                }
             } else {
-                LoginView()
+                NavigationView {
+                    MainView(state: $state)
+                }
             }
         }
     }

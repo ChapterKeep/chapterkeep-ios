@@ -17,13 +17,10 @@ import SwiftUI
     var body: some View {
         Button (action: action) {
             label()
-                .foregroundStyle(.white)
-                .padding()
-                .frame(maxHeight: 45.0)
-                .background(Color("AccentColor"))
-                .cornerRadius(8)
         }
-
+        .foregroundStyle(.white)
+        .background(.accent)
+        .cornerRadius(8)
     }
 
 }
