@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CKStarRate: View {
-    var starSize: CGFloat = 44
     @Binding var rating: Int
+    var starSize: CGFloat = 44
+    var readOnly = false
 
     var body: some View {
         HStack {
@@ -20,7 +21,9 @@ struct CKStarRate: View {
                     .frame(width: starSize, height: starSize)
                     .foregroundColor(index < rating ? .yellow : .gray)
                     .onTapGesture {
-                        rating = index + 1
+                        if !readOnly {
+                            rating = index + 1
+                        }
                     }
             }
         }
