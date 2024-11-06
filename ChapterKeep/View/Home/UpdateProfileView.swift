@@ -60,7 +60,7 @@ struct UpdateProfileView: View {
                 .background(.white)
                 .cornerRadius(12)
             }
-            .padding()
+            .padding([.horizontal, .bottom])
         }
         .navigationBarBackButtonHidden(true)
     }

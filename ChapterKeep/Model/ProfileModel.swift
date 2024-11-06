@@ -15,6 +15,17 @@ class ProfileModel: ObservableObject {
     @Published var department: Department = .none
     
     @Published var articleCount = 0
+    @Published var books = [
+        CKBook(bookId: 1, title: "테스트1", author: "테스트"),
+        CKBook(bookId: 2, title: "테스트2", author: "테스트"),
+        CKBook(bookId: 3, title: "테스트3", author: "테스트"),
+        CKBook(bookId: 4, title: "테스트4", author: "테스트"),
+        CKBook(bookId: 5, title: "테스트5", author: "테스트"),
+        CKBook(bookId: 6, title: "테스트6", author: "테스트"),
+        CKBook(bookId: 7, title: "테스트7", author: "테스트"),
+        CKBook(bookId: 8, title: "테스트8", author: "테스트"),
+
+    ]
     @Published var isBookShelfVisible = false
 }
 

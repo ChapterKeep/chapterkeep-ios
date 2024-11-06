@@ -36,11 +36,34 @@ struct HomeView: View {
                     }
                 }
                 .padding(.bottom)
-                profile
-                Spacer()
-
+                VStack {
+                    profile
+                    ForEach(model.books.chunked(into: 3), id: \.self) { chunk in
+                        CKBookShelf(books: chunk)
+                    }
+                }
+                .scrollOnOverflow()
             }
-            .padding(20)
+            .padding([.horizontal, .bottom],20)
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button(action: {  }) {
+                        Image(systemName: "plus")
+                            .foregroundColor(.white)
+                            .frame(width: 40, height: 40)
+                            .background(Color.accent)
+                            .clipShape(Circle())
+                            .padding()
+                    }
+                }
+            }
+        }
+        .onAppear {
+            model.nickname = "책 먹는 고양이"
+            model.intro = "컴퓨터 전공 관련 교육책이나 추리 소설 좋아합니다 "
+            model.articleCount = 8
         }
     }
     
@@ -99,6 +122,7 @@ struct HomeView: View {
         .background(.white)
         .cornerRadius(12)
     }
+    
 }
 
 @available(iOS 17.0, *)
@@ -110,5 +134,14 @@ struct HomeView: View {
         .onAppear {
             model.nickname = "책 먹는 고양이"
             model.intro = "컴퓨터 전공 관련 교육책이나 추리 소설 좋아합니다 "
+            model.articleCount = 8
         }
+}
+
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
 }

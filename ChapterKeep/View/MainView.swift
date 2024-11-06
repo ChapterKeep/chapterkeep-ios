@@ -101,5 +101,14 @@ extension MainView {
 @available(iOS 17.0, *)
 #Preview {
     @Previewable @State var state = AppState.main
+    @Previewable @StateObject var model = ProfileModel()
+
     MainView(state: $state)
+        .environmentObject(model)
+        .onAppear {
+            model.nickname = "책 먹는 고양이"
+            model.intro = "컴퓨터 전공 관련 교육책이나 추리 소설 좋아합니다 "
+            model.articleCount = 8
+        }
+
 }
