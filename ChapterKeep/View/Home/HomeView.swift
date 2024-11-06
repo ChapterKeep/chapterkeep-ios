@@ -49,7 +49,7 @@ struct HomeView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Button(action: {  }) {
+                    NavigationLink(destination: AddRecordView()) {
                         Image(systemName: "plus")
                             .foregroundColor(.white)
                             .frame(width: 40, height: 40)
@@ -87,7 +87,6 @@ struct HomeView: View {
                         .font(.system(size: 10).weight(.medium))
                         .foregroundColor(.white)
                         .frame(width:60, height: 25, alignment: .center)
-                    
                 }
                 .foregroundStyle(.white)
                 .background(.accent)
