@@ -115,6 +115,8 @@ struct SearchView: View {
             Spacer()
         }
         .padding()
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(.accent, lineWidth: 3)
@@ -138,6 +140,8 @@ struct SearchView: View {
             Spacer()
         }
         .padding()
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(.accent, lineWidth: 3)
