@@ -20,7 +20,7 @@ struct MainView: View {
                     .tag(1)
                 OverallBoardView()
                     .tag(2)
-                EmptyView()
+                MyView()
                     .tag(3)
             }
             VStack {
