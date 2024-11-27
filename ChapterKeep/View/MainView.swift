@@ -33,7 +33,7 @@ struct MainView: View {
                         } label: {
                             CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
                         }
-                        Spacer()
+                        .frame(maxWidth: .infinity)
                     }
                 }
                 .padding()
