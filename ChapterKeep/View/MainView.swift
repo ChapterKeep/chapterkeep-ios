@@ -9,16 +9,16 @@ import SwiftUI
 
 struct MainView: View {
     @Binding var state: AppState
-    @State var selectedTab = 0
+    @State var selectedTab = 1
     
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
-                EmptyView()
+                SearchView()
                     .tag(0)
                 HomeView()
                     .tag(1)
-                EmptyView()
+                OverallBoardView()
                     .tag(2)
                 EmptyView()
                     .tag(3)
@@ -39,6 +39,11 @@ struct MainView: View {
                 .padding()
                 .background(.white)
                 .clipShape(.rect(cornerRadii: RectangleCornerRadii(topLeading: 15, topTrailing: 15)))
+                .shadow(
+                    color: Color(red: 0, green: 0, blue: 0, opacity: 0.25),
+                    radius: 15,
+                    y: 4
+                )
             }
         }
         .edgesIgnoringSafeArea(.bottom)

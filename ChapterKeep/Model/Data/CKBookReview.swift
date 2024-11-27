@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CKBookReview: Codable {
+struct CKBookReview: Codable, Hashable {
     var id: Int
     var bookId: Int
     var memberId: Int

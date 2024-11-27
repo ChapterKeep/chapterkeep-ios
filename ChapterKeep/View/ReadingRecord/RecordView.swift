@@ -28,7 +28,7 @@ struct RecordView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            ZStack() {
+            ZStack {
                 Rectangle()
                     .foregroundColor(.clear)
                     .frame(width: .infinity, height: .infinity)
@@ -129,6 +129,20 @@ struct RecordView: View {
                         }
                         .padding()
                     }
+                    .background {
+                        VStack {
+                            HStack {
+                                Spacer()
+                                Image(systemName: "bookmark.fill")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 45, height: 45)
+                                    .foregroundColor(Color(red: 240 / 255, green: 238 / 255, blue: 224 / 255))
+                                    .padding(.trailing)
+                            }
+                            Spacer()
+                        }
+                    }
                     .frame(width: .infinity, height: .infinity)
                     .background(.white)
                     .padding()
@@ -137,12 +151,6 @@ struct RecordView: View {
                     .shadow(
                         color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 10, y: 4
                     )
-                Image(systemName: "bookmark.fill")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 45, height: 45)
-                    .foregroundColor(Color(red: 240 / 255, green: 238 / 255, blue: 224 / 255))
-                    .offset(x: 127, y: -355)
             }
             Spacer()
         }
