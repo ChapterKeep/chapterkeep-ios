@@ -10,9 +10,10 @@ import SwiftUI
 struct Article: Hashable {
     var isAnnouncement = false
     var title: String
-//    var content: String
+    var content: String = ""
     var likes = 0
     var writer: String
+    var date = "2024-11-27"
 }
 
 struct BoardDetailView: View {
@@ -79,8 +80,11 @@ struct BoardDetailView: View {
             VStack {
                 VStack {
                     ForEach(articles, id: \.self) { article in
-                        articleRow(article)
-                            .padding(.horizontal)
+                        NavigationLink(destination: PostView(article: article, board: boardName)) {
+                            articleRow(article)
+                        }
+                        .padding(.horizontal)
+                        .foregroundColor(.black)
                     }
                 }
             }.scrollOnOverflow()
