@@ -41,7 +41,7 @@ struct BoardDetailView: View {
                     Text(boardName)
                         .font(.system(size: 20).bold())
                     Spacer()
-                    Button(action: {}) {
+                    NavigationLink(destination: NewPostView(board: boardName, isEssay: true, essayTopic: "[이달의 주제] 가을")) {
                         Image(systemName:"square.and.pencil")
                             .resizable()
                             .scaledToFit()
@@ -87,7 +87,7 @@ struct BoardDetailView: View {
             Spacer()
         }
         .edgesIgnoringSafeArea(.bottom)
-
+        .navigationBarBackButtonHidden(true)
     }
 }
 
