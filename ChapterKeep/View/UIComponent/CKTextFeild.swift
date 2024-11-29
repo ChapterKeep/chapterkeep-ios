@@ -22,6 +22,7 @@ struct CKTextFeild: View {
     @ViewBuilder private var content: some View {
         if type == .normal {
             TextField(titleKey, text: $text, axis: .vertical)
+                .autocapitalization(.none)
         } else if type == .secure {
             SecureField(titleKey, text: $text)
         }
