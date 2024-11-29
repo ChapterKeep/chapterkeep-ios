@@ -29,9 +29,22 @@
 		B1AE595B2CA42057009365D6 /* ChapterKeepUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChapterKeepUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B1E72BB52CF9ED8D00DD46D4 /* Exceptions for "ChapterKeep" folder in "ChapterKeep" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B1AE59402CA42055009365D6 /* ChapterKeep */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B1AE59432CA42055009365D6 /* ChapterKeep */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B1E72BB52CF9ED8D00DD46D4 /* Exceptions for "ChapterKeep" folder in "ChapterKeep" target */,
+			);
 			path = ChapterKeep;
 			sourceTree = "<group>";
 		};
@@ -195,6 +208,8 @@
 			);
 			mainGroup = B1AE59382CA42055009365D6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B1AE59422CA42055009365D6 /* Products */;
 			projectDirPath = "";
@@ -399,6 +414,7 @@
 				DEVELOPMENT_TEAM = QW2GW32H77;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChapterKeep/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ChapterKeep;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -436,6 +452,7 @@
 				DEVELOPMENT_TEAM = QW2GW32H77;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChapterKeep/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ChapterKeep;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
