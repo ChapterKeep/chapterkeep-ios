@@ -70,7 +70,7 @@ struct HomeView: View {
     private var profile: some View {
         HStack {
             VStack {
-                model.profileImage
+                Image(uiImage: model.profileImage ?? UIImage(systemName: "person.crop.circle")!)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 50, height: 50)

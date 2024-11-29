@@ -18,7 +18,7 @@ struct ProfileEditView: View {
             HStack(alignment: .center) {
                 Spacer()
                 VStack(alignment: .center) {
-                    model.profileImage
+                    Image(uiImage: model.profileImage ?? UIImage(systemName: "person.crop.circle")!)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 100, height: 100)
@@ -76,7 +76,7 @@ struct ProfileEditView: View {
     
     func regisiterImage() {
         // TODO: 프로필 이미지 등록 구현
-        model.profileImage = Image(systemName: "person.fill.turn.down")
+//        model.profileImage = UIImage(systemName: "person.fill.turn.down")!
     }
     
     func checkDuplicateNickname() {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 class ProfileModel: ObservableObject {
-    @Published var profileImage = Image(systemName: "person.circle.fill")
+    @Published var profileImage: UIImage?
     @Published var nickname = ""
     @Published var nicknameAvailability: NicknameAvailablity = .none
     @Published var intro = ""
