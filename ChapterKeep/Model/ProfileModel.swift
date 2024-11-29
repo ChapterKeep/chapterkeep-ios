@@ -12,7 +12,6 @@ class ProfileModel: ObservableObject {
     @Published var nickname = ""
     @Published var nicknameAvailability: NicknameAvailablity = .none
     @Published var intro = ""
-    @Published var department: Department = .none
     
     @Published var articleCount = 0
     @Published var books = [

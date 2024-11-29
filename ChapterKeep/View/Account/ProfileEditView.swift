@@ -64,12 +64,6 @@ struct ProfileEditView: View {
                 .foregroundColor(.gray)
             CKTextFeild("자기소개 입력", text: $model.intro, height: 130, maxLength: 80)
                 .padding(.bottom, 6)
-            
-            Text("학과를 선택해주세요")
-                .font(.system(size: 15, weight: .bold))
-                .foregroundColor(.gray)
-            // TODO: 학과 선택 추가
-
         }
         .padding([.bottom, .horizontal], 30)
     }
