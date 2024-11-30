@@ -94,7 +94,7 @@ struct MyView: View {
                 .scrollOnOverflow()
             }
         }
-        .padding()
+        .padding([.top, .horizontal])
     }
 }
 

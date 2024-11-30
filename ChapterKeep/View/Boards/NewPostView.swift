@@ -23,7 +23,8 @@ struct RightAngledTriangle: Shape {
         // Close the triangle
         path.closeSubpath()
         
-        return path    }
+        return path
+    }
 }
 
 

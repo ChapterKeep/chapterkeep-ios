@@ -88,6 +88,7 @@ struct PostListView: View {
             .padding()
             .scrollOnOverflow()
         }
+        .navigationBarBackButtonHidden(true)
     }
     
     func deletePost(post: Post) {

@@ -75,7 +75,7 @@ struct BoardDetailView: View {
                     }
                 }
             }
-            .padding(.vertical)
+            .padding(.bottom)
             .padding()
             VStack {
                 VStack {
