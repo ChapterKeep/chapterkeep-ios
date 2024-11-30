@@ -45,7 +45,7 @@ struct OverallBoardView: View {
                 .padding([.horizontal, .top])
                 NavigationLink(destination: BoardDetailView(articles: [
                     Article(isAnnouncement: true, title: "[이달의 주제] 가을", likes: 50, writer: "운영자"),
-                    Article(isAnnouncement: false, title: "떨어지는 잎", likes: 50, writer: "책 먹는 하마"),
+                    Article(title: "떨어지는 잎", content: "바람이 스치자마자 나무에서 마지막 잎이 떨어졌다. 하늘을 유영하는 듯 천천히 내려오는 잎을 바라보며 나는 생각했다. 계절이 가고 있구나. 가지를 떠나고 나면 그 잎은 흙이 되고, 나무는 다시 혼자가 된다. 그러나 그 나무는 알까? 새봄이 오면 다시금 새잎을 틔울 수 있다는 걸. 가벼워진 가지는 이 겨울을 온전히 견디며 다시 꽃을 피울 준비를 하고 있다.", likes: 50, writer: "건붕이", date: "2024-11-24"),
                     Article(isAnnouncement: false, title: "작은 별", likes: 50, writer: "책 먹는 하마"),
                     Article(isAnnouncement: false, title: "꽃잎 같은 기억", likes: 50, writer: "책 먹는 하마"),
                     Article(isAnnouncement: false, title: "여름의 끝", likes: 50, writer: "책 먹는 하마"),

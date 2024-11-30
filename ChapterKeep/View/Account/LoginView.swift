@@ -7,8 +7,12 @@
 
 import Foundation
 import SwiftUI
+import Papyrus
 
 @MainActor struct LoginView: View {
+    @EnvironmentObject var networking: Networking
+    private var api: Accounts { networking.member }
+
     @Binding var state: AppState
     @State var username = ""
     @State var password = ""
@@ -33,7 +37,7 @@ import SwiftUI
             .frame(width: 300)
             .padding()
             Button {
-                state = .main
+                Task { await doLogin() }
             } label: {
                 Text("로그인")
                     .font(.headline)
@@ -48,6 +52,20 @@ import SwiftUI
             Spacer()
             NavigationLink(destination: SignupView()) {
                 Text("회원가입")
+            }
+        }
+    }
+    
+    func doLogin() async {
+        do {
+            let response = try await api.login(id: username, password: password)
+            if response.code == "S001" {
+                state = .main
+            } else {
+                print("Error \(response.code)\n\(response.message)")
+            }
+        } catch {
+            if let error = error as? PapyrusError {
             }
         }
     }

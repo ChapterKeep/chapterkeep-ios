@@ -1,0 +1,24 @@
+{
+  "originHash" : "4518a5526b18b8437375aa9f3aa64132325cb967ef549eabe65c0a8181696d03",
+  "pins" : [
+    {
+      "identity" : "papyrus",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kevin-kp/papyrus.git",
+      "state" : {
+        "revision" : "90261021266051c8168b21563dea43e4468a139d",
+        "version" : "0.6.19"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-syntax",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}

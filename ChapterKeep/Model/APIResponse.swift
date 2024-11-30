@@ -8,5 +8,5 @@
 struct APIResponse<T>: Codable where T: Codable {
     let code: String
     let message: String
-    let data: T
+    let data: T?
 }

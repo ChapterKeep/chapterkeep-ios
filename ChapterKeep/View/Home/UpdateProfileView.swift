@@ -10,6 +10,8 @@ import SwiftUI
 struct UpdateProfileView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var model: ProfileModel
+    @EnvironmentObject var networking: Networking
+    private var api: Accounts { networking.member }
 
     var body: some View {
         ZStack {

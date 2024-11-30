@@ -24,9 +24,12 @@ struct SignupAccountView: View {
     }
 
     @EnvironmentObject var model: SignupModel
+    @EnvironmentObject var networking: Networking
+    private var api: Accounts { networking.member }
+
     @State var usernameState: UsernameState = .none
     @State var passwordState: PasswordState = .none
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("아이디를 입력해주세요")
@@ -40,10 +43,10 @@ struct SignupAccountView: View {
                 if usernameState != .none {
                     Text(usernameState.rawValue)
                         .font(.system(size: 13))
-                        .foregroundColor(.gray)
+                        .foregroundColor(usernameState == .duplicate ? .red : .gray)
                 }
                 Spacer()
-                CKButton (action: { checkUsernameAvailability() }) {
+                CKButton (action: { Task { await checkUsernameAvailability() } }) {
                     Text("중복 확인")
                         .font(.system(size: 13).weight(.medium))
                         .foregroundColor(.white)
@@ -83,12 +86,21 @@ struct SignupAccountView: View {
         }
     }
     
-    func checkUsernameAvailability() {
-        // TODO: 아이디 중복 확인 구현
-        if usernameState == .available {
-            usernameState = .duplicate
-        } else {
-            usernameState = .available
+    func checkUsernameAvailability() async {
+        if model.username.isEmpty {
+            return
+        }
+        
+        do {
+            let response = try await api.checkUsername(model.username)
+            if response.data! {
+                usernameState = .duplicate
+            } else {
+                usernameState = .available
+            }
+        } catch {
+            // TODO: Need error handling
+            print(error)
         }
     }
     
@@ -116,11 +128,8 @@ struct SignupAccountView: View {
 
 }
 
-@available(iOS 17.0, *)
-#Preview() {
-    @Previewable @StateObject var model = SignupModel()
-    
+#Preview {
     SignupAccountView()
-        .environmentObject(model)
+            .environmentObject(SignupModel())
+            .environmentObject(Networking())
 }
-

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProfileEditView: View {
     @EnvironmentObject var model: ProfileModel
+    @EnvironmentObject var networking: Networking
+    private var api: Accounts { networking.member }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -40,23 +42,16 @@ struct ProfileEditView: View {
             CKTextFeild("닉네임 (10자 제한)", text: $model.nickname, maxLength: 10)
                 .padding(.bottom, 6)
             HStack {
-                if model.nicknameAvailability == .available {
-                    Text("사용 가능한 닉네임입니다.")
-                        .font(.system(size: 13))
-                        .foregroundColor(.gray)
-                } else if model.nicknameAvailability == .unavailable {
-                    Text("사용할 수 없는 닉네임입니다.")
-                        .font(.system(size: 13))
-                        .foregroundColor(.gray)
-                }
+                Text(model.nicknameAvailability.rawValue)
+                    .font(.system(size: 13))
+                    .foregroundColor(model.nicknameAvailability == .unavailable ? .red : .gray)
                 Spacer()
-                CKButton (action: { checkDuplicateNickname() }) {
+                CKButton (action: { Task { await checkDuplicateNickname() } }) {
                     Text("중복 확인")
                         .font(.system(size: 13).weight(.medium))
                         .foregroundColor(.white)
                         .frame(width:80, height: 30, alignment: .center)
                 }
-
             }
             .padding(.bottom, 30)
             Text("간단한 자기소개를 입력해주세요 (80자 제한)")
@@ -73,20 +68,24 @@ struct ProfileEditView: View {
 //        model.profileImage = UIImage(systemName: "person.fill.turn.down")!
     }
     
-    func checkDuplicateNickname() {
-        // TODO: 닉네임 중복 확인 구현
-        if model.nicknameAvailability == .available {
-            model.nicknameAvailability = .unavailable
-        } else {
-            model.nicknameAvailability = .available
+    func checkDuplicateNickname() async {
+        if model.nickname.isEmpty { return }
+        
+        do {
+            let response = try await api.checkUsername(model.nickname)
+            if response.data! {
+                model.nicknameAvailability = .unavailable
+            } else {
+                model.nicknameAvailability = .available
+            }
+        } catch {
+            // TODO: Need error handling
+            print(error)
         }
     }
 }
 
-@available(iOS 17.0, *)
-#Preview() {
-    @Previewable @StateObject var model = ProfileModel()
-    
+#Preview {
     ProfileEditView()
-        .environmentObject(model)
+        .environmentObject(ProfileModel())
 }
